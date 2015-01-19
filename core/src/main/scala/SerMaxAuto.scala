@@ -19,7 +19,7 @@ object SerMaxAuto {
   }
 
   @flintSer
-  def flintSer(rdd: RDD[Float]): rdd.type = {
+  def flintSer(rdd: RDD[Float]): RDD[Float] = {
     rdd.cache()
   }
 }

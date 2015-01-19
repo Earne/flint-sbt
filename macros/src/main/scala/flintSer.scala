@@ -12,12 +12,12 @@ object flintSerMacro {
     import Flag._
     val result = {
       annottees.map(_.tree).toList match {
-        case q"def flintSer($rdd: RDD[Float]): rdd.type = { ..$body }" :: Nil =>
+        case q"def flintSer($rdd: RDD[Float]): RDD[Float] = { ..$body }" :: Nil =>
           q"""
-            def flintSer($rdd: RDD[Float]): rdd.type = {
+            def flintSer($rdd: RDD[Float]): RDD[Float] = {
               println("wtf")
               import java.io.DataOutputStream
-              cachedRDD = $rdd.mapPartitions { iter =>
+              $rdd.mapPartitions { iter =>
                 val chunk = new FloatChunk(41960)
                 val dos = new DataOutputStream(chunk)
                 iter.foreach(dos.writeFloat)
