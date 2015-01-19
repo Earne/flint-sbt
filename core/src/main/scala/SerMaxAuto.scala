@@ -18,6 +18,7 @@ object SerMaxAuto {
     println("Max value is " + cachedRDD.max())
   }
 
+  @flintSer
   def flintSer(rdd: RDD[Float]): rdd.type = {
     rdd.cache()
   }
