@@ -8,6 +8,8 @@ class flintSer extends StaticAnnotation {
 
 object flintSerMacro {
   def impl(c: Context)(annottees: c.Expr[Any]*): c.Expr[Any] = {
+    import c.universe._
+    import Flag._
     val result = {
       annottees.map(_.tree).toList match {
         case q"def flintSer($rdd: RDD[Float]): rdd.type = { ..$body }" :: Nil =>
